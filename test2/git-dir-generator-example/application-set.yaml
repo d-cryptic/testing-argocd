@@ -20,6 +20,9 @@ spec:
       name: '{{name}}'
     spec:
       project: default
+      directory:
+        exclude: '{config.json}'
+        include: '*.yaml'
       source:
         # source repo, in this example both repositories are the same
         repoURL: https://github.com/d-cryptic/testing-argocd.git
