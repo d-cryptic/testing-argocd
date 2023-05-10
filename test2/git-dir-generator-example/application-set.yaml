@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-projects
+spec:
+  generators:
+  - git:
+      # git repository to get the variables from
+      repoURL: https://github.com/d-cryptic/testing-argocd.git
+      # branch used to get the variables from 
+      revision: HEAD
+      files:
+      # path to the directory that includes directories to read as variables
+      - path: test2/git-dir-generator-example/**/**/config.json
+      - path: test2/git-dir-generator-example/**/config.json
+      - path: test2/git-dir-generator-example/**/**/**/config.json
+  template:
+    metadata:
+      # basename is the name of the directory not the full path
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        # source repo, in this example both repositories are the same
+        repoURL: https://github.com/d-cryptic/testing-argocd.git
+        targetRevision: HEAD
+        # path to read manifests from, here it's the full path not only the name of the directory
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        # different namespaces named after the directories names to be used as destinations
+        namespace: 'argocd'
