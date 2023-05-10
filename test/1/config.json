@@ -1,0 +1,12 @@
+{
+"name": "customer1",
+"activateFeature": true,
+"additional": {
+ "configuration": "config1"
+},
+"config": [
+ "config1",
+ "config2",
+ "config3"
+]
+}

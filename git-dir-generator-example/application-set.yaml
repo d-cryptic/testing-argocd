@@ -11,8 +11,10 @@ spec:
       revision: HEAD
       directories:
       # path to the directory that includes directories to read as variables
-      - path: git-dir-generator-example/*
+      # - path: git-dir-generator-example/*/**.yaml
       - path: git-dir-generator-example/*/*
+      - path: git-dir-generator-example/*
+      - path: git-dir-generator-example/*/*/*
   template:
     metadata:
       # basename is the name of the directory not the full path
@@ -22,7 +24,7 @@ spec:
       source:
         directory:
           recurse: true
-          include: '*.yml,*.yaml'
+          include: '*.yaml, *.yml'
         # source repo, in this example both repositories are the same
         repoURL: https://github.com/d-cryptic/testing-argocd.git
         targetRevision: HEAD

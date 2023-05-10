@@ -19,6 +19,9 @@ spec:
     spec:
       project: default
       source:
+        directory:
+          recurse: true
+          include: '*.yml,*.yaml'
         helm:
           # specify different values file based on directories variables
           valueFiles:
