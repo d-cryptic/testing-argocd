@@ -20,15 +20,16 @@ spec:
       name: '{{name}}'
     spec:
       project: default
-      directory:
-        exclude: '{config.json}'
-        include: '*.yaml'
+      
       source:
         # source repo, in this example both repositories are the same
         repoURL: https://github.com/d-cryptic/testing-argocd.git
         targetRevision: HEAD
         # path to read manifests from, here it's the full path not only the name of the directory
         path: '{{path}}'
+        directory:
+          exclude: '{config.json}'
+          include: '*.yaml'
       destination:
         server: https://kubernetes.default.svc
         # different namespaces named after the directories names to be used as destinations
