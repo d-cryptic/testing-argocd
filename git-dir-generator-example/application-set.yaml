@@ -9,22 +9,24 @@ spec:
       repoURL: https://github.com/d-cryptic/testing-argocd.git
       # branch used to get the variables from 
       revision: HEAD
-      directories:
+      files:
       # path to the directory that includes directories to read as variables
       # - path: git-dir-generator-example/*/**.yaml
-      - path: git-dir-generator-example/*/*
-      - path: git-dir-generator-example/*
-      - path: git-dir-generator-example/*/*/*
+      - path: git-dir-generator-example/*/*.yaml
+      - path: git-dir-generator-example/*.yaml
+      - path: git-dir-generator-example/*/*/*.yaml
   template:
     metadata:
       # basename is the name of the directory not the full path
-      name: '{{path.basename}}'
+      # name: '{{path.basename}}'
+      name: 'hello'
     spec:
       project: default
       source:
         directory:
           recurse: true
-          include: '*.yaml, *.yml'
+          # exclude: '*, !*.*'
+          # include: '*.yaml, *.yml'
         # source repo, in this example both repositories are the same
         repoURL: https://github.com/d-cryptic/testing-argocd.git
         targetRevision: HEAD

@@ -1,41 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: my-website
+  name: argocd
 spec:
   generators:
-    generators:
     - git:
         repoURL: https://github.com/d-cryptic/testing-argocd.git
-        revision: HEAD
+        revision: main
         files:
-          - path: "test/**.json"
+        - path: "test/**/**/config.json"
+        - path: "test/**/config.json"
+        - path: "test/**/**/**/config.json"
   template:
     metadata:
-      name: "my-website-{{ .name }}"
-      labels:
-        customer: "{{ .name }}"
-        environment: prod
+      name: '{{cluster.name}}-guestbook'
     spec:
       project: default
-      destination:
-        namespace: mynamespace
-        server: https://kubernetes.default.svc
-        project: default
       source:
-        helm:
-          values: |
-            api:
-              replicas: {{ .replicas }}
-              {{ - if .activateFeature }}
-              feature:
-                value: {{ .additional.configuration }}
-              {{ - end }}
-              configs
-              {{- range .config }}
-                 - name: {{ . | title | quote }}
-              {{- end }}    
-        path: my-website
-        repoURL: >-
-          https://github.com/d-cryptic/testing-argocd.git
+        # directory:
+        #   recurse: true
+        #   # exclude: '*, !*.*'
+        #   # include: '*.yaml, *.yml'
+        repoURL: https://github.com/d-cryptic/testing-argocd.git
         targetRevision: main
+        path: '{{cluster.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        #server: '{{cluster.address}}'
+        namespace: argocd

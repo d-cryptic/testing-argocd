@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook
+  name: argocd
 spec:
   generators:
     - git:
         repoURL: https://github.com/d-cryptic/testing-argocd.git
-        revision: HEAD
+        revision: main
         files:
         - path: "git-generator-files-discovery/**/**/config.json"
         - path: "git-generator-files-discovery/**/config.json"
@@ -17,10 +17,14 @@ spec:
     spec:
       project: default
       source:
+        # directory:
+        #   recurse: true
+        #   # exclude: '*, !*.*'
+        #   # include: '*.yaml, *.yml'
         repoURL: https://github.com/d-cryptic/testing-argocd.git
-        targetRevision: HEAD
+        targetRevision: main
         path: '{{cluster.path}}'
       destination:
         server: https://kubernetes.default.svc
         #server: '{{cluster.address}}'
-        namespace: guestbook
+        namespace: argocd
