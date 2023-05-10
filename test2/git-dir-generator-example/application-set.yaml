@@ -34,3 +34,11 @@ spec:
         server: https://kubernetes.default.svc
         # different namespaces named after the directories names to be used as destinations
         namespace: 'argocd'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+          - Validate=true
+        automated:
+          prune: false
+          selfHeal: false
