@@ -5,19 +5,19 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/argoproj/applicationset.git
+        repoURL: https://github.com/d-cryptic/testing-argocd.git
         revision: HEAD
         files:
-        - path: "examples/git-generator-files-discovery/cluster-config/**/config.json"
+        - path: "git-generator-files-discovery/**/**/config.json"
   template:
     metadata:
       name: '{{cluster.name}}-guestbook'
     spec:
       project: default
       source:
-        repoURL: https://github.com/argoproj/applicationset.git
+        repoURL: https://github.com/d-cryptic/testing-argocd.git
         targetRevision: HEAD
-        path: "examples/git-generator-files-discovery/apps/guestbook"
+        path: '{{cluster.path}}'
       destination:
         server: https://kubernetes.default.svc
         #server: '{{cluster.address}}'
