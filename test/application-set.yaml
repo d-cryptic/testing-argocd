@@ -17,10 +17,10 @@ spec:
     spec:
       project: default
       source:
-        # directory:
-        #   recurse: true
-        #   # exclude: '*, !*.*'
-        #   # include: '*.yaml, *.yml'
+        directory:
+          recurse: true
+          # exclude: '*, !*.*'
+          include: '*.yaml, *.yml'
         repoURL: https://github.com/d-cryptic/testing-argocd.git
         targetRevision: main
         path: '{{cluster.path}}'

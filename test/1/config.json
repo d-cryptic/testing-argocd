@@ -1,7 +1,7 @@
 {
     "cluster": {
       "name": "argo-image-updater",
-      "path": "test/1/argo-image-updater"
+      "path": "test/1/argo-image-updater/"
     }
   }
   

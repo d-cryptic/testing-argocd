@@ -1,7 +1,7 @@
 {
     "cluster": {
       "name": "argo-workflows",
-      "path": "test/1/argo-workflows"
+      "path": "test/3/argo-workflows/"
     }
   }
   
