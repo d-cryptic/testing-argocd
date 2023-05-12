@@ -1,16 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-image-updater
-  namespace: argocd3
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  name: argo-image-update
+  namespace: argocd
+  # finalizers:
+  # - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
   project: default
   source:
+    directory:
+      exclude: '{config.json}'
+      include: '*.yaml'
     path: test2/git-dir-generator-example/argo-projects/argo-image-updater/
     repoURL: https://github.com/d-cryptic/testing-argocd.git
     targetRevision: HEAD

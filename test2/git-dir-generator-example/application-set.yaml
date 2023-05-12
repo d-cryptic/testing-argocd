@@ -2,7 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: argo-projects
+  namespace: argocd
 spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
   generators:
   - git:
       # git repository to get the variables from
@@ -11,16 +14,17 @@ spec:
       revision: HEAD
       files:
       # path to the directory that includes directories to read as variables
-      - path: test2/git-dir-generator-example/**/**/config.json
-      - path: test2/git-dir-generator-example/**/config.json
-      - path: test2/git-dir-generator-example/**/**/**/config.json
+      # - path: test2/git-dir-generator-example/**/**/config.json
+      # - path: test2/git-dir-generator-example/**/config.json
+      # - path: test2/git-dir-generator-example/**/**/**/config.json
+      - path: test2/git-dir-generator-example/argo-projects/argo-image-updater/config.json
   template:
     metadata:
       # basename is the name of the directory not the full path
-      name: '{{name}}'
+      # name: '{{name}}'
+      name: argo-image-updater
     spec:
       project: default
-      
       source:
         # source repo, in this example both repositories are the same
         repoURL: https://github.com/d-cryptic/testing-argocd.git
@@ -33,8 +37,10 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         # different namespaces named after the directories names to be used as destinations
-        namespace: 'argocd'
+        # namespace: 'argocd'
+        namespace: argocd
       syncPolicy:
+        # preserveResourcesOnDeletion: true
         syncOptions:
           - CreateNamespace=true
           - ApplyOutOfSyncOnly=true
