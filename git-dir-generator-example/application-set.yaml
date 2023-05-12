@@ -26,7 +26,7 @@ spec:
         directory:
           recurse: true
           # exclude: '*, !*.*'
-          # include: '*.yaml, *.yml'
+          include: '*.yaml, *.yml'
         # source repo, in this example both repositories are the same
         repoURL: https://github.com/d-cryptic/testing-argocd.git
         targetRevision: HEAD
