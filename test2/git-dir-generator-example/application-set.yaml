@@ -14,15 +14,15 @@ spec:
       revision: HEAD
       files:
       # path to the directory that includes directories to read as variables
-      # - path: test2/git-dir-generator-example/**/**/config.json
-      # - path: test2/git-dir-generator-example/**/config.json
-      # - path: test2/git-dir-generator-example/**/**/**/config.json
-      - path: test2/git-dir-generator-example/argo-projects/argo-image-updater/config.json
+      - path: test2/git-dir-generator-example/**/**/config.json
+      - path: test2/git-dir-generator-example/**/config.json
+      - path: test2/git-dir-generator-example/**/**/**/config.json
+      # - path: test2/git-dir-generator-example/argo-projects/argo-image-updater/config.json
   template:
     metadata:
       # basename is the name of the directory not the full path
-      # name: '{{name}}'
-      name: argo-image-updater
+      name: '{{name}}'
+      # name: argo-image-updater
     spec:
       project: default
       source:
