@@ -14,37 +14,37 @@ spec:
       revision: HEAD
       files:
       # path to the directory that includes directories to read as variables
-      - path: test2/git-dir-generator-example/**/**/config.json
-      - path: test2/git-dir-generator-example/**/config.json
-      - path: test2/git-dir-generator-example/**/**/**/config.json
+      - path: test2/git-dir-generator-example/**/**/**.json
+      - path: test2/git-dir-generator-example/**/**.json
+      - path: test2/git-dir-generator-example/**/**/**/**.json
       # - path: test2/git-dir-generator-example/argo-projects/argo-image-updater/config.json
-    template:
-      metadata:
-        # basename is the name of the directory not the full path
-        name: '{{name}}'
-        # name: argo-image-updater
-      spec:
-        project: default
-        source:
-          # source repo, in this example both repositories are the same
-          repoURL: https://github.com/d-cryptic/testing-argocd.git
-          targetRevision: HEAD
-          # path to read manifests from, here it's the full path not only the name of the directory
-          path: '{{path}}'
-          directory:
-            exclude: '{config.json}'
-            include: '*.yaml'
-        destination:
-          server: https://kubernetes.default.svc
-          # different namespaces named after the directories names to be used as destinations
-          # namespace: 'argocd'
-          namespace: argocd
-        syncPolicy:
-          # preserveResourcesOnDeletion: true
-          syncOptions:
-            - CreateNamespace=true
-            - ApplyOutOfSyncOnly=true
-            - Validate=true
-          automated:
-            prune: false
-            selfHeal: false
+  template:
+    metadata:
+      # basename is the name of the directory not the full path
+      name: '{{name}}'
+      # name: argo-image-updater
+    spec:
+      project: default
+      source:
+        # source repo, in this example both repositories are the same
+        repoURL: https://github.com/d-cryptic/testing-argocd.git
+        targetRevision: HEAD
+        # path to read manifests from, here it's the full path not only the name of the directory
+        path: '{{path}}'
+        directory:
+          exclude: '{config.json}'
+          include: '*.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        # different namespaces named after the directories names to be used as destinations
+        # namespace: 'argocd'
+        namespace: argocd
+      syncPolicy:
+        # preserveResourcesOnDeletion: true
+        syncOptions:
+          - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
+          - Validate=true
+        automated:
+          prune: false
+          selfHeal: false
