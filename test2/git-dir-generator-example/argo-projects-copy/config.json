@@ -1,4 +1,4 @@
 {
       "name": "argo-workflows2-test",
-      "path": "test2/git-dir-generator-example/argo-projects-copy/argo-workflows2/"
+      "location": "test2/git-dir-generator-example/argo-projects-copy/argo-workflows2/"
 }
