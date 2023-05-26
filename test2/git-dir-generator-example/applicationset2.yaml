@@ -13,7 +13,7 @@ spec:
   source:
     directory:
       exclude: '{config.json}'
-      include: '*.yaml'
+      include: "{*.yml,*.yaml}"
     path: test2/git-dir-generator-example/argo-projects/argo-image-updater/
     repoURL: https://github.com/d-cryptic/testing-argocd.git
     targetRevision: HEAD
